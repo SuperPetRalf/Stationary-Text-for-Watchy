@@ -1,10 +1,11 @@
 #include <Watchy.h> //include the Watchy library
 #include "NunitoSans_Bold28pt7b.h"
 #include "NunitoSans_Light28pt7b.h"
-        
+#include "settings.h" 
 
-class WatchFace : public Watchy { //inherit and extend Watchy class
+class DefaultWatchFace : public Watchy { //inherit and extend Watchy class
   public:
+    DefaultWatchFace(const watchySettings& s) : Watchy(s) {}
     void drawWatchFace() { //override this method to customize how the watch face looks
       uint16_t lines = 0;
       const char *lows [10] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
@@ -72,7 +73,7 @@ class WatchFace : public Watchy { //inherit and extend Watchy class
     }
 };
 
-WatchFace m; //instantiate your watchface
+DefaultWatchFace m(settings);
 
 void setup() {
   m.init(); //call init in setup
